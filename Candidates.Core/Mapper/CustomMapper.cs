@@ -12,6 +12,8 @@ public static class CustomMapper
         return new Candidate
         {
             Id = dto.Id,
+            CreatedAt = dto.CreatedAt,
+            LastModifiedAt = dto.LastModifiedAt,
             FirstName = dto.FirstName,
             LastName = dto.LastName,
             PhoneNumber = dto.PhoneNumber,

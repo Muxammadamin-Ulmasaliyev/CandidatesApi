@@ -5,36 +5,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Candidates.Infrastructure.Repositories;
 
-public class CandidateRepository : ICandidateRepository
+public class CandidateRepository : BaseRepository<Candidate>, ICandidateRepository
 {
-    private readonly AppDbContext _dbContext;
-    public CandidateRepository(AppDbContext dbContext)
+    public CandidateRepository(AppDbContext dbContext) : base(dbContext)
     {
-        _dbContext = dbContext;
+
     }
 
-    public async Task<Candidate> GetByEmailAsync(string email)
+    public async Task<int?> GetIdByEmailAsync(string email)
     {
         var normalizedEmail = email.Trim().ToLowerInvariant();
-        return await _dbContext.Candidates.AsNoTracking().FirstOrDefaultAsync(x => x.Email == normalizedEmail);
+        return await _dbContext.Candidates
+            .Where(c => c.Email.ToLower() == email)
+            .Select(c => (int?)c.Id)
+            .FirstOrDefaultAsync();
     }
 
-    public async Task<Candidate> GetById(int id)
-    {
-        return await _dbContext.Candidates.FindAsync(id);
-    }
-
-    public async Task<bool> IsExists(string email)
-    {
-        var normalizedEmail = email.Trim().ToLowerInvariant();
-        return await _dbContext.Candidates.AnyAsync(x => x.Email == normalizedEmail);
-    }
-
-    public async Task<Candidate> Upsert(Candidate entity)
-    {
-        entity.LastModifiedAt = DateTime.Now;
-        var updatedEntity = _dbContext.Candidates.Update(entity).Entity;
-        await _dbContext.SaveChangesAsync();
-        return updatedEntity;
-    }
 }

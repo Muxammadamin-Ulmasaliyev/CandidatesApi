@@ -2,10 +2,7 @@
 
 namespace Candidates.Core.Interfaces.IRepositories;
 
-public interface ICandidateRepository
+public interface ICandidateRepository : IBaseRepository<Candidate>
 {
-    Task<Candidate> Upsert(Candidate entity);
-    Task<Candidate> GetById(int id);
-    Task<bool> IsExists(string email);
-    Task<Candidate> GetByEmailAsync(string email);
+    Task<int?> GetIdByEmailAsync(string email);
 }

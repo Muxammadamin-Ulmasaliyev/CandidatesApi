@@ -2,7 +2,6 @@
 using Candidates.Core.DTOs.General;
 using Candidates.Core.Interfaces.IServices;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace Candidates.Api.Controllers
 {
