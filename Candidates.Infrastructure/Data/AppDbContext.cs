@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Candidates.Core.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Candidates.Infrastructure.Data;
 
@@ -11,8 +12,7 @@ public class AppDbContext : DbContext
 
     #region DbSets
 
-
-
+    public DbSet<Candidate> Candidates { get; set; }
 
 
     #endregion
