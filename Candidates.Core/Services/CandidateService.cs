@@ -18,7 +18,7 @@ public class CandidateService : ICandidateService
 
     public async Task<ResponseModel<CandidateDto>> Upsert(CandidateDto dto)
     {
-        var existingId = await _candidateRepository.GetIdByEmailAsync(dto.Email.Trim().ToLowerInvariant());
+        var existingId = await _candidateRepository.GetIdByEmailAsync(dto.Email);
 
         if (existingId != null && existingId != dto.Id)
         {

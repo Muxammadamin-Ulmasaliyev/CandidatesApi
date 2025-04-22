@@ -16,7 +16,7 @@ public class CandidateRepository : BaseRepository<Candidate>, ICandidateReposito
     {
         var normalizedEmail = email.Trim().ToLowerInvariant();
         return await _dbContext.Candidates
-            .Where(c => c.Email.ToLower() == email)
+            .Where(c => c.Email == email)
             .Select(c => (int?)c.Id)
             .FirstOrDefaultAsync();
     }
