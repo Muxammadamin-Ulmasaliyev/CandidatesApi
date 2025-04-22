@@ -1,6 +1,5 @@
 ﻿using Candidates.Core.DTOs;
 using Candidates.Core.DTOs.General;
-using Candidates.Core.Entities;
 
 namespace Candidates.Core.Interfaces.IServices;
 

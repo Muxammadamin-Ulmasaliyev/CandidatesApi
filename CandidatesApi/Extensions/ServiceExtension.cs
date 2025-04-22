@@ -11,12 +11,10 @@ public static class ServiceExtension
     {
         #region Services
         services.AddScoped<ICandidateService, CandidateService>();
-
         #endregion
 
         #region Repositories
         services.AddScoped<ICandidateRepository, CandidateRepository>();
-
         #endregion
 
         return services;
